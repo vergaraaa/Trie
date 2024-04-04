@@ -20,6 +20,7 @@ struct ContentView: View {
     var trie = Trie()
     
     init() {
+        trie.insert(word: "Pineapple", emoji: "🍍")
         trie.insert(word: "Apple", emoji: "🍎")
         trie.insert(word: "Pear", emoji: "🍐")
         trie.insert(word: "Orange", emoji: "🍊")
@@ -29,19 +30,33 @@ struct ContentView: View {
         trie.insert(word: "Mango", emoji: "🥭")
         trie.insert(word: "Strawberry", emoji: "🍓")
         trie.insert(word: "Avocado", emoji: "🥑")
+        trie.insert(word: "Cherry", emoji: "🍎")
+        trie.insert(word: "Eggplant", emoji: "🍆")
+        trie.insert(word: "Broccoli", emoji: "🥦")
+        trie.insert(word: "Onion", emoji: "🧅")
+        trie.insert(word: "Potato", emoji: "🥔")
+        trie.insert(word: "Carrot", emoji: "🥕")
     }
     
     var body: some View {
         VStack {
-            TextField("Search fruit", text: $wordToSearch)
+            TextField("Search fruit or vegetable", text: $wordToSearch)
                 .padding()
+                .background(Color(.systemGray5))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+            
+            Spacer()
             
             if searchResult.0 {
-                Text(String(searchResult.1!))
+                Text(String(searchResult.1!) + String(searchResult.1!) + String(searchResult.1!))
+                    .font(.title)
             } else {
-                Text("\(wordToSearch) not found")
-                    .foregroundColor(.red)
+                if wordToSearch != "" {
+                    Text("\(wordToSearch) not found")
+                }
             }
+            
+            Spacer()
         }
         .onChange(of: wordToSearch, {
             searchResult = trie.contains(word: wordToSearch)
