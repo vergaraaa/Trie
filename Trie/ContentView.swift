@@ -36,6 +36,7 @@ struct ContentView: View {
         trie.insert(word: "Onion", emoji: "🧅")
         trie.insert(word: "Potato", emoji: "🥔")
         trie.insert(word: "Carrot", emoji: "🥕")
+        trie.insert(word: "Blueberry", emoji: "🫐")
     }
     
     var body: some View {
